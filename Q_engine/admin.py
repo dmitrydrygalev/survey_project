@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Question, Answer, Choice
+from .models import Question, Answer, Choice, Category
 
 
-class QuestionAdmin(admin.ModelAdmin):
+class AdminManageCategory(admin.ModelAdmin):
+    list_display = (
+        'title',
+    )
+
+
+class AdminManageQuestion(admin.ModelAdmin):
     list_display = (
         'title',
         'visible',
@@ -10,7 +16,7 @@ class QuestionAdmin(admin.ModelAdmin):
     )
 
 
-class ChoiceAdmin(admin.ModelAdmin):
+class AdminManageChoice(admin.ModelAdmin):
     list_display = (
         'title',
         'question',
@@ -20,7 +26,7 @@ class ChoiceAdmin(admin.ModelAdmin):
     list_filter = ('question',)
 
 
-class AnswerAdmin(admin.ModelAdmin):
+class AdminManageAnswer(admin.ModelAdmin):
     list_display = (
         'user',
         'question',
@@ -29,6 +35,7 @@ class AnswerAdmin(admin.ModelAdmin):
     list_filter = ('user',)
 
 
-admin.site.register(Question, QuestionAdmin)
-admin.site.register(Choice, ChoiceAdmin)
-admin.site.register(Answer, AnswerAdmin)
+admin.site.register(Question, AdminManageQuestion)
+admin.site.register(Choice, AdminManageChoice)
+admin.site.register(Answer, AdminManageAnswer)
+admin.site.register(Category, AdminManageCategory)
